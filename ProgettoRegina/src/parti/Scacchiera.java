@@ -6,7 +6,7 @@ public class Scacchiera {
 	private Diagonale[] diagonaliDisc;
 	private Diagonale[] diagonaliAsc;
 	
-	public Scacchiera() {
+	public Scacchiera(Riga[] righe, Colonna[] colonne,Diagonale[] diagonaliDisc,Diagonale[] diagonaliAsc) {
 		for(int i=0;i<7;i++) {
 			this.righe[i].setNumero(i);
 		}

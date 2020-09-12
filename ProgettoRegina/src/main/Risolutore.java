@@ -1,15 +1,22 @@
 package main;
 
+import parti.Colonna;
+import parti.Diagonale;
+import parti.Riga;
 import parti.Scacchiera;
 
 public class Risolutore {
 	public static void main(String[] args) {
 
-	Scacchiera scacchiera=new Scacchiera();
+	Riga[] riga=new Riga[8];
+	Colonna[] colonna=new Colonna[8];
+	Diagonale[] diagAsc=new Diagonale[2 * 8 - 1];
+	Diagonale[] diagDisc=new Diagonale[2 * 8 -1];
+	Scacchiera scacchiera=new Scacchiera(riga,colonna,diagAsc,diagDisc);
 	
 	Task[] task = new Task[8];
 	 
-	 for (int col = 0; col < 8; col++) {
+	 for (int col=0; col < 8; col++) {
 		 (task[col] = new Task(col)).start();
 	 }
 	 int soluzioni = 0;
@@ -22,23 +29,31 @@ public class Risolutore {
 	
 	 static class Task extends Thread {
 		 private int col;
-		 private boolean[] q, up, down;
 		 private int solutions;
 	 
 		 Task(int col) {
 			 this.col = col;
-			 q = new boolean[8];
-			 up = new boolean[2 * 8 - 1];
-			 down = new boolean[2 * 8 -1];
 		 }
 	 
-	 public void run() {
-		 q[col] = up[col] = down[col + 8 - 1] = true;
-		 tryRow(1);
+		 
+		 public void run() {
+			 colonna.isFree[col] = diagAsc.isFree[col] = diagDisc.isFree[col + 8 - 1] = true;
+			 tryRow(1);
 		 }
 		 
-	 void tryRow(int r) { ... }
-	 
+	void tryRow(int r) {
+		 for (int c = 0; c < 8; c++) {
+		 if (!q[col] && !up[r + c] && !down[c - r + 8 - 1]) {
+			 if (r == 8 - 1)
+				 solutions++;
+			 else {
+				 q[c] = up[r + c] = down[c - r + 8 - 1] = true;
+				 tryRow(r + 1);
+				 q[c] = up[r + c] = down[c - r + 8 - 1] = false;
+			 }
+		 	}	
+		 }
+		}
 	 
 	public int getSolutions() {
 		 try {
@@ -50,19 +65,7 @@ public class Risolutore {
 		 }
 		 
 	}
-	static void tryRow(int r) {
-		 for (int c = 0; c < 8; c++) {
-		 if (!q[col] && !up[r + c] && !down[c - r + 8 - 1]) {
-		 if (r == 8 - 1)
-		 solutions++;
-		 else {
-		 q[c] = up[r + c] = down[c - r + 8 - 1] = true;
-		 tryRow(r + 1);
-		 q[c] = up[r + c] = down[c - r + 8 - 1] = false;
-		 }
-		 }
-		 }
-		}
+	
 	 }
 	 
 

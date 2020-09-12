@@ -2,10 +2,8 @@ package parti;
 
 public class Colonna {
 	private int numero;
-
-	public Colonna(int numero) {
-		this.numero=numero;
-	}
+	private boolean[] isFree;
+	
 
 	public int getNumero() {
 		return numero;
@@ -15,6 +13,14 @@ public class Colonna {
 		this.numero = numero;
 	}
 
+	public boolean[] isFree() {
+		return isFree;
+	}
 
+	public void setFree(boolean[] isFree) {
+		this.isFree = isFree;
+	}
+
+	
 	
 }

@@ -2,10 +2,8 @@ package parti;
 
 public class Riga {
 	private int numero;
-
-	public Riga(int numero) {
-		this.numero=numero;
-	}
+	private boolean[] isFree;
+	
 
 	public int getNumero() {
 		return numero;
@@ -13,6 +11,14 @@ public class Riga {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	public boolean[] isFree() {
+		return isFree;
+	}
+
+	public void setFree(boolean[] isFree) {
+		this.isFree = isFree;
 	}
 	
 	
