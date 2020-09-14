@@ -68,7 +68,7 @@ class GFG {
 
 				/*
 				 * If placing queen in board[i][col] doesn't lead to a solution then remove
-				 * queen from board[i][col]
+				 * queen from board[i] [col]
 				 */
 				board[i][col] = 0; // BACKTRACK
 			}
