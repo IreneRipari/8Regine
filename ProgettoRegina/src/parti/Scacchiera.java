@@ -5,21 +5,31 @@ public class Scacchiera {
 	private Colonna[] colonne;
 	private Diagonale[] diagonaliDisc;
 	private Diagonale[] diagonaliAsc;
-	
-	public Scacchiera(Riga[] righe, Colonna[] colonne,Diagonale[] diagonaliDisc,Diagonale[] diagonaliAsc) {
-		for(int i=0;i<7;i++) {
+
+	public Scacchiera(Riga[] righe, Colonna[] colonne, Diagonale[] diagonaliDisc, Diagonale[] diagonaliAsc) {
+
+		this.righe = righe;
+		this.colonne = colonne;
+		this.diagonaliAsc = diagonaliAsc;
+		this.diagonaliDisc = diagonaliDisc;
+
+		for (int i = 0; i < 8; i++) {
+			righe[i] = new Riga();
 			this.righe[i].setNumero(i);
 		}
-		for(int i=0;i<7;i++) {
+		for (int i = 0; i < 8; i++) {
+			colonne[i] = new Colonna();
 			this.colonne[i].setNumero(i);
 		}
-		for(int i=0;i<15;i++) {
+		for (int i = 0; i < 15; i++) {
+			diagonaliAsc[i] = new Diagonale();
 			this.diagonaliAsc[i].setNumero(i);
 		}
-		for(int i=0;i<15;i++) {
+		for (int i = 0; i < 15; i++) {
+			diagonaliDisc[i] = new Diagonale();
 			this.diagonaliDisc[i].setNumero(i);
 		}
-		
+
 	}
 
 	public Riga[] getRighe() {
@@ -53,7 +63,5 @@ public class Scacchiera {
 	public void setDiagonaliAsc(Diagonale[] diagonaliAsc) {
 		this.diagonaliAsc = diagonaliAsc;
 	}
-	
-	
-	
+
 }
