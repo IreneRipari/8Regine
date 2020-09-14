@@ -1,23 +1,14 @@
 package main;
 
-import java.io.IOException;
-import parti.Colonna;
-import parti.Diagonale;
-import parti.Karalienes;
-import parti.Regina;
-import parti.Riga;
-import parti.Scacchiera;
+import parti.Queen;
 
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
 		int n = 8;
-		int maxThreads = 8;
-		Karalienes.setMaxGSK(maxThreads);
-		Karalienes queens = new Karalienes(n, 1, new int[n + 1]);
-		long startedTime = System.currentTimeMillis();
+		int[] places =  new int[n + 1];
+		Queen queens = new Queen(n, 1, places);
 		queens.start();
 		queens.join();
-		System.out.println("Solutions: " + Karalienes.getVariantuSkaiciu());
-		System.out.println("Working time: " + (float) (System.currentTimeMillis() - startedTime) / 1000 + " s.");
+		System.out.println("Solutions: " + Queen.getVariantuSkaiciu());
 	}
 }

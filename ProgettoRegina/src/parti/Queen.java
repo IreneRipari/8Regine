@@ -2,24 +2,20 @@ package parti;
 
 import java.util.Stack;
 
-public class Karalienes extends Thread {
+public class Queen extends Thread {
 	private int n;
 	private int places[];
 	private int column;
 	private static Integer solutions = new Integer(0);
 	private static Integer startedThreads = 0;
-	private static int maxThreads;
-	private Stack<Karalienes> stack;
+	private static int maxThreads=8;
+	private Stack<Queen> stack;
 
-	public Karalienes(int n, int column, int places[]) {
+	public Queen(int n, int column, int places[]) {
 		this.n = n;
 		this.column = column;
 		this.places = places;
-		stack = new Stack<Karalienes>();
-	}
-
-	public static void setMaxGSK(int sk) {
-		maxThreads = sk;
+		stack = new Stack<Queen>();
 	}
 
 	private boolean arOk(int row, int column) {
@@ -54,7 +50,7 @@ public class Karalienes extends Thread {
 						gSk = startedThreads;
 					}
 					if (gSk < maxThreads) {
-						Karalienes kar = new Karalienes(n, column + 1, places.clone());
+						Queen kar = new Queen(n, column + 1, places.clone());
 						kar.start();
 						stack.add(kar);
 					} else {
@@ -64,7 +60,7 @@ public class Karalienes extends Thread {
 					}
 				}
 				if (column == n) {
-					Karalienes.incVariantuSkaiciu();
+					Queen.incVariantuSkaiciu();
 				}
 			}
 		}
@@ -82,10 +78,9 @@ public class Karalienes extends Thread {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		Karalienes.incGijuSk();
+		Queen.incGijuSk();
 		deliojam();
-		Karalienes.decGijuSk();
+		Queen.decGijuSk();
 	}
 
 	private static synchronized void incVariantuSkaiciu() {
