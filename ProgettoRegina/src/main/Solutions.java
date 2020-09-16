@@ -3,18 +3,18 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class Soluzioni {
+public  class Solutions {
 	private List<int [][]> solution;
 
-	public Soluzioni() {
+	public Solutions() {
 		solution = new ArrayList<int [][]>();
 	}
 
-	public boolean addSolution(int [][] board,int ciao) {
-		synchronized (solution) {
+	public boolean addSolution(int [][] board) {
+		 
 			solution.add(board);
 			return true;
-		}
+		
 		
 		
 	}
@@ -22,7 +22,7 @@ public  class Soluzioni {
 	public int getSize() {
 		return solution.size();
 	}
-	public void mostraSoluzioni() {
+	public void showSolutions() {
 		for (int[][] is : solution) {
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {

@@ -4,12 +4,12 @@ import java.util.Stack;
 
 class Queen extends Thread {
 	final int N = 8;
-	private int posizionePrima;
-	private Soluzioni soluzione;
+	private int firstPosition;
+	private Solutions solution;
 
-	public Queen(int posizionePrima, Soluzioni soluzione) {
-		this.posizionePrima = posizionePrima;
-		this.soluzione = soluzione;
+	public Queen(int firstPosition, Solutions solution) {
+		this.firstPosition = firstPosition;
+		this.solution = solution;
 	}
 
 	boolean isSafe(int board[][], int row, int col) {
@@ -33,7 +33,7 @@ class Queen extends Thread {
 		return true;
 	}
 
-	boolean solveNQUtil(int board[][], int col) {
+	boolean backTrack(int board[][], int col) {
 
 		if (col >= N)
 			return true;
@@ -43,7 +43,7 @@ class Queen extends Thread {
 			if (isSafe(board, i, col)) {
 
 				board[i][col] = 1;
-				if (solveNQUtil(board, col + 1) == true)
+				if (backTrack(board, col + 1) == true)
 					return true;
 
 				board[i][col] = 0; // BACKTRACK
@@ -53,12 +53,12 @@ class Queen extends Thread {
 		return false;
 	}
 
-	boolean solveNQ() {
+	boolean solve8Queens() {
 		int board[][] = { { 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0 } };
-		board[posizionePrima][0] = 1;
-		if (solveNQUtil(board, 1) == false) {
+		board[firstPosition][0] = 1;
+		if (backTrack(board, 1) == false) {
 			System.out.print("Solution does not exist");
 			return false;
 		}
@@ -67,12 +67,12 @@ class Queen extends Thread {
 	}
 
 	public void run() {
-		solveNQ();
+		solve8Queens();
 	}
 
-	public boolean addSolution(int board[][]) {
+	public synchronized boolean addSolution(int board[][]) {
 		
-		soluzione.addSolution(board,posizionePrima);
+		solution.addSolution(board);
 		
 		return true;
 	}
