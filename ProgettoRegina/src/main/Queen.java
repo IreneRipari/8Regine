@@ -4,7 +4,7 @@ package main;
 using backtracking */
 import java.util.*;
 
-class GFG {
+class Queen {
 	final int N = 8;
 
 	/* A utility function to print solution */
@@ -104,7 +104,7 @@ class GFG {
 
 	// driver program to test above function
 	public static void main(String args[]) {
-		GFG Queen = new GFG();
+		Queen Queen = new Queen();
 		Queen.solveNQ();
 	}
 }
